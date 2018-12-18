@@ -12,7 +12,7 @@ class App extends Component {
           <div className="container__regions">
             <h1>Regions</h1>
             <ul>
-              <li>1</li>
+              <li></li>
               <li>2</li>
               <li>3</li>
               <li>4</li>
@@ -40,17 +40,17 @@ class App extends Component {
               </div>
               <div className='wine_features'>
                 <h1>Name Wine</h1>
-                  <ul>
-                    <li>Appellation</li>
-                    <li>Region</li>
-                    <li>Color</li>
-                    <li>Grapes</li>
-                  </ul>
+                <ul>
+                  <li>Appellation</li>
+                  <li>Region</li>
+                  <li>Color</li>
+                  <li>Grapes</li>
+                </ul>
 
-                  <p>
-                    <span>Like</span>
-                    <span>Comment</span>
-                  </p>
+                <p>
+                  <span>Like</span>
+                  <span>Comment</span>
+                </p>
 
               </div>
             </div>
