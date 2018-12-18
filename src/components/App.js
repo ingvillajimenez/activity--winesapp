@@ -3,6 +3,30 @@ import '../css/App.css'
 import '../css/Details.css'
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      regions: []
+
+    }
+  }
+
+  componentDidMount() {
+    fetch('https://wines-api.herokuapp.com/api/regions')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          regions: data
+        })
+      })
+
+
+  }
+
+
+
+
   render() {
     return (
       <div>
@@ -11,12 +35,14 @@ class App extends Component {
 
           <div className="container__regions">
             <h1>Regions</h1>
+
             <ul>
-              <li></li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
+              {
+                this.state.regions.map(region => {
+                  return <li>{region}</li>
+                })
+              }
+
             </ul>
           </div>
           <div className="container__wines">
