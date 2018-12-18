@@ -7,8 +7,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      regions: []
-
+      regions: [],
+      wines: []
     }
   }
 
@@ -20,11 +20,16 @@ class App extends Component {
           regions: data
         })
       })
-
-
   }
-
-
+getWines(region){
+  fetch('https://wines-api.herokuapp.com/api/wines?region=' + region)
+  .then(response => response.json())
+  .then(data => {
+    this.setState({
+      wines:data
+    })
+  })
+}
 
 
   render() {
@@ -39,7 +44,7 @@ class App extends Component {
             <ul>
               {
                 this.state.regions.map(region => {
-                  return <li>{region}</li>
+                  return <li onClick={()=>this.getWines(region)}>{region}</li>
                 })
               }
 
@@ -48,14 +53,11 @@ class App extends Component {
           <div className="container__wines">
             <h1>Wines</h1>
             <ul>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
-              <li>6</li>
-              <li>7</li>
-              <li>8</li>
+              {
+                this.state.wines.map((wine) => {
+                  return <li>{wine.name}</li>
+                })
+              }
             </ul>
           </div>
           <div className="container__details">
