@@ -1,0 +1,35 @@
+.container__details__wine {
+  display: flex;
+  /* border: 1px solid red; */
+}
+
+.wine_image {
+  width: 35%;
+  /* border: 1px solid blue;  */
+}
+
+.wine_features {
+  width: 65%;
+  /* border: 1px solid orange; */
+}
+
+.wine_features li {
+  border: 1px solid transparent;
+}
+
+.wine_features ul {
+  border: 1px solid transparent;
+}
+
+.img_wine {
+  width: 200px;
+}
+
+span {
+  padding-left: 20px;
+  
+}
+
+p {
+  border-top: 1px solid #ddd;
+}
