@@ -29,7 +29,6 @@ getWines(region){
   fetch('https://wines-api.herokuapp.com/api/wines?region=' + region)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
     this.setState({
       wines:data
     })
@@ -82,7 +81,10 @@ getWine = (wineId) => {
             <ul>
               {
                 this.state.wines.map((wine) => {
-                  return <li onClick={()=> this.getImages(wine.id)}>{wine.name}</li>
+                  // console.log(wine)
+                  return <li onClick={ () => this.getWine(wine.id)}>
+                  {wine.name}
+                  </li>
                 })
               }
             </ul>
