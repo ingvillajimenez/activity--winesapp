@@ -8,7 +8,11 @@ class App extends Component {
     super();
     this.state = {
       regions: [],
-      wines: []
+      wines: [],
+      image: "",
+      desc: ""
+
+
     }
   }
 
@@ -32,8 +36,26 @@ getWines(region){
   })
 }
 
-getImages(winesId){
-  console.log(winesId);
+getDescription= (wineId) => {
+  fetch('https://wines-api.herokuapp.com/api/wines/'+  wineId)
+  .then (res => res.json())
+  .then(response => {
+
+    this.setState({
+      desc: response
+    })
+  })
+}
+
+getWine = (wineId) => {
+  fetch('https://wines-api.herokuapp.com/api/wines/'+ wineId +'/image')
+  .then(response => {
+    console.log(response)
+    this.setState({
+      image : response.url
+    })
+  })
+  this.getDescription(wineId)
 }
 
 
@@ -69,15 +91,18 @@ getImages(winesId){
             <h1>Wine Details</h1>
             <div className="container__details__wine">
               <div className='wine_image'>
-                <img className="img_wine" src="https://products3.imgix.drizly.com/ci-mark-west-pinot-noir-9dd7cfd74fb70f01.jpeg?auto=format%2Ccompress&dpr=2&fm=jpeg&h=240&q=20" />
+                <img className="img_wine" src={this.state.image} />
               </div>
               <div className='wine_features'>
                 <h1>Name Wine</h1>
                 <ul>
-                  <li>Appellation</li>
-                  <li>Region</li>
-                  <li>Color</li>
-                  <li>Grapes</li>
+                  <li>Appellation: {this.state.desc && this.state.desc.appellation.name}</li>
+                  <li>Region: {this.state.desc && this.state.desc.appellation.region }</li>
+                  <li>Color: {this.state.desc && this.state.desc.type }</li>
+                  <li>Grapes: {this.state.desc && this.state.desc.grapes.map(grape => {
+                    return <span>{grape}</span>
+                  })
+                }</li>
                 </ul>
 
                 <p>
